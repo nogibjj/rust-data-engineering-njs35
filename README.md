@@ -14,8 +14,12 @@ I then modified caesar-cipher-cli/src/main.rs to include two new arguments: ``fi
 
 1. Change to the caesar-cipher-cli directory
 ``cd caesar-cipher-cli``
-2. 
-
+2. Run 
+``cargo build``
+3. Encrypt a message with ``cargo run -- --message "<your message>" --fixed-encrypt``
+![Alt text](fixed_encrypt.png)
+4. Decrypt a message with ``cargo run -- --message "<your message>" --numfixed-decrypt``
+![Alt text](fixed_decrypt.png)
 
 ## Makefile
 
