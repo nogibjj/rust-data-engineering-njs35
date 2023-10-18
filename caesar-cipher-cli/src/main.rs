@@ -10,8 +10,7 @@ cargo run --  --message "Ypp dy dro lexuob. Ofobi zobcyx pyb drowcovfoc" --decry
 
 */
 
-
-use caeser_cipher_cli::{decrypt, encrypt};
+use caeser_cipher_cli::{decrypt, encrypt, fixed_encrypt, fixed_decrypt};
 use clap::Parser;
 
 /// CLI tool to encrypt and decrypt messages using the caeser cipher
@@ -34,16 +33,29 @@ struct Args {
     /// Must be between 1 and 25, the default is 3
     #[arg(short, long, default_value = "3")]
     shift: u8,
+
+    /// Perform fixed encryption
+    #[arg(short, long)]
+    fixed_encrypt: bool,
+
+    /// Perform fixed decryption
+    #[arg(short, long)]
+    numfixed_decrypt: bool,
 }
 
 // run it
 fn main() {
     let args = Args::parse();
+
     if args.encrypt {
         println!("{}", encrypt(&args.message, args.shift));
     } else if args.decrypt {
         println!("{}", decrypt(&args.message, args.shift));
+    } else if args.fixed_encrypt {
+        println!("{}", fixed_encrypt(&args.message));
+    } else if args.numfixed_decrypt {
+        println!("{}", fixed_decrypt(&args.message));
     } else {
-        println!("Please specify either --encrypt or --decrypt");
+        println!("Please specify an action: --encrypt, --decrypt, --fixed-encrypt, or --fixed-decrypt");
     }
 }
